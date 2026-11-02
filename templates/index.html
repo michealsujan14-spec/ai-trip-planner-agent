@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="TripMate AI plans your trip: flights, hotels and a day-by-day itinerary from one message.">
+  <title>TripMate AI | Travel Planner</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%E2%9C%88%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#input">Skip to message box</a>
+
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M6 18 L26 9 L20 25 L16 18 Z" fill="currentColor"/>
+        </svg>
+        <span class="brand-name">TripMate AI</span>
+      </div>
+      <button id="new-trip" class="btn-ghost" type="button">New trip</button>
+    </div>
+  </header>
+
+  <main id="chat" class="chat">
+    <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+      <h1 id="welcome-title">Plan a whole trip in one message</h1>
+      <p class="lead">Give me the route, how long you'll stay and your budget. I'll find flights and hotels and write a day-by-day itinerary.</p>
+      <div class="suggestions" role="group" aria-label="Example trips">
+        <button type="button" class="chip" data-prompt="Plan a 7 day Japan trip from Bangladesh, including hotels and sightseeing, under $2000">Plan a 7 day Japan trip from Bangladesh, including hotels and sightseeing, under $2000</button>
+        <button type="button" class="chip" data-prompt="Plan a 4 day trip from Delhi to Singapore with hotels and a budget estimate">Plan a 4 day trip from Delhi to Singapore with hotels and a budget estimate</button>
+        <button type="button" class="chip" data-prompt="Weekend trip from London to Paris, budget hotels and the best sights">Weekend trip from London to Paris, budget hotels and the best sights</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="status" class="sr-only" role="status" aria-live="polite"></div>
+
+  <footer class="dock">
+    <form id="composer" class="composer" autocomplete="off">
+      <label for="input" class="sr-only">Describe your trip</label>
+      <textarea id="input" rows="1" maxlength="1500" placeholder="From where, to where, how many days, and your budget" enterkeyhint="send"></textarea>
+      <button id="send" class="btn-primary" type="submit" disabled>Plan trip</button>
+    </form>
+    <p class="fineprint">Flight results show live flight status, not ticket prices. Confirm details with the airline or hotel before booking.</p>
+  </footer>
+
+  <script src="{{ url_for('static', path='script.js') }}" defer></script>
+</body>
+</html>

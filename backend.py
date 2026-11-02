@@ -32,7 +32,7 @@ def get_database_url():
 
     if not database_url:
         raise ValueError(
-            "DATABASE_URL is missing. Please add your Render PostgreSQL External Database URL to .env"
+            "DATABASE_URL is missing. Please add your Render PostgreSQL URL to .env"
         )
 
     if "sslmode=" not in database_url:
@@ -52,10 +52,9 @@ if not GROQ_API_KEY:
 # =========================
 
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-20b",
     api_key=GROQ_API_KEY
 )
-
 
 # =========================
 # State
@@ -76,17 +75,19 @@ class TravelState(TypedDict):
 
 def flight_agent(state: TravelState):
     query = state["user_query"]
-    flight_data = search_flights(query)
+
+    try:
+        flight_data = search_flights(query)
+    except Exception as e:
+        flight_data = f"Flight search unavailable: {e}"
 
     return {
         "flight_results": flight_data,
         "messages": [
-            AIMessage(content="Flight results fetched.")
+            AIMessage(content="Flight search completed.")
         ],
         "llm_calls": state.get("llm_calls", 0) + 1
     }
-
-
 
 # =========================
 # Hotel Agent
