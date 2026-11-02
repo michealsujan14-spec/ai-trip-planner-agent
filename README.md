@@ -210,9 +210,9 @@ This project is available for educational and development purposes. Add a LICENS
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Micheal sujan**
 
-GitHub: https://github.com/michealsujan
+GitHub: https://github.com/michealsujan14-spec
 
 ---
 
